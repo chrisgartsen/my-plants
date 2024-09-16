@@ -1,0 +1,33 @@
+a {
+  text-decoration: none;
+  font-size: inherit;
+  :hover {
+    cursor: pointer;
+  }
+}
+
+@mixin link {
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: 2s ease;
+}
+
+.link-primary {
+  @include link;
+  color: $primary-color;
+
+  &:hover {
+    color: $primary-color-light;
+    border-bottom: 2px solid $primary-color-light;
+  }
+}
+
+.link-secondary {
+  @include link;
+  color: $secondary-color;
+
+  &:hover {
+    color: $secondary-color-dark;
+    border-bottom: 2px solid $secondary-color-dark;
+  }
+}

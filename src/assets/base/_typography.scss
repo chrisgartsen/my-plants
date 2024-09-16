@@ -2,3 +2,26 @@ html,
 body {
   font-family: 'Lato', sans-serif;
 }
+
+$headers: (
+  'h1': 2.5rem,
+  'h2': 2rem,
+  'h3': 1.5rem,
+  'h4': 1rem
+);
+
+$margins: (
+  'h1': 2.5rem,
+  'h2': 2rem,
+  'h3': 1rem,
+  'h4': 0.5rem
+);
+
+@each $name, $size in $headers {
+  #{$name} {
+    font-weight: bold;
+    font-size: $size;
+    margin-block: map-get($margins, $name);
+    color: $primary-color;
+  }
+}

@@ -1,0 +1,24 @@
+.navbar {
+  .container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-menu {
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    color: $primary-color;
+    text-transform: uppercase;
+  }
+}
