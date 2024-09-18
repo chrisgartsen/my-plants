@@ -1,0 +1,11 @@
+@mixin base-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+@mixin center-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

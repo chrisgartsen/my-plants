@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <header>
+  <header id="app-header">
     <nav class="navbar">
       <div class="container">
         <div class="logo">My Plants</div>
@@ -14,6 +14,21 @@
       </div>
     </nav>
   </header>
-  <main>My Content</main>
-  <footer>My Footer</footer>
+  <main id="app-main">
+    <div class="container">
+      <div id="login-page">
+        <div class="card">
+          <header class="card-header">
+            <h3>Login</h3>
+          </header>
+          <section class="card-content">The Form content</section>
+
+          <footer class="card-footer">The card footer</footer>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer id="app-footer">
+    <div class="container">My Footer</div>
+  </footer>
 </template>
