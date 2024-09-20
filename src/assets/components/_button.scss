@@ -1,0 +1,55 @@
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+@mixin btn-base {
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  outline: none;
+  border: none;
+
+  transition: all 1s ease;
+
+  &:active {
+    transform: translateY(0.2rem);
+  }
+}
+
+@mixin btn-fill {
+  color: $white-color;
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px #ccc;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  @include btn-fill;
+  @include btn-base;
+
+  &:hover {
+    background-color: $primary-color-light;
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary-color;
+  @include btn-fill;
+  @include btn-base;
+
+  &:hover {
+    background-color: $secondary-color-dark;
+  }
+}
+
+.btn-link {
+  color: $primary-color;
+  background-color: transparent;
+  @include btn-base;
+  &:hover {
+    color: $primary-color-light;
+  }
+}

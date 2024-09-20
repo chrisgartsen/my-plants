@@ -1,4 +1,8 @@
 #login-page {
   min-height: 100%;
   @include center-form;
+
+  .card {
+    width: 50vw;
+  }
 }
