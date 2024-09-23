@@ -41,12 +41,14 @@
 
 <script setup>
 import { reactive, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
 
 import { useAuthStore } from '@/stores/auth'
 
 const authStore = useAuthStore()
+const router = useRouter()
 
 const credentials = reactive({
   email: '',
@@ -82,7 +84,10 @@ const submitForm = async () => {
   const valid = await v$.value.$validate()
 
   if (valid) {
-    authStore.login({ email: credentials.email, password: credentials.password })
+    console.log('Form: Starting Login')
+    await authStore.login({ email: credentials.email, password: credentials.password })
+    router.push({ name: 'home' })
+    console.log('Form: Finished Login')
     resetForm()
   }
 }

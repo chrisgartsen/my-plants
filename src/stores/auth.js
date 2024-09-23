@@ -1,27 +1,46 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-import { auth, signInWithEmailAndPassword } from '@/utils/firebase'
+import { auth } from '@/utils/firebase'
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
-export const useAuthStore = defineStore('auth', () => {
-  const isAuthenticated = ref(false)
+export const useAuthStore = defineStore('auth', {
+  state: () => {
+    return { currentUser: null }
+  },
 
-  const login = async (credentials) => {
-    console.log('Loggin in user', credentials.email)
+  getters: {
+    isAuthenticated(state) {
+      return state.currentUser != null
+    }
+  },
 
-    try {
-      const cred = await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
-      console.log(cred)
-
-      isAuthenticated.value = true
-    } catch (e) {
-      console.log(e)
+  actions: {
+    async login(credentials) {
+      try {
+        await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
+        this.currentUser = auth.currentUser
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async logout() {
+      try {
+        await signOut(auth)
+        this.currentUser.value = null
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    autoLogin(user) {
+      if (user) {
+        this.currentUser = user
+      } else {
+        this.currentUser = null
+      }
+    },
+    async createAccount(credentials) {
+      console.log('Creating account', credentials.email)
     }
   }
-
-  const createAccount = async (credentials) => {
-    console.log('Creating account', credentials.email)
-  }
-
-  return { isAuthenticated, login, createAccount }
 })
