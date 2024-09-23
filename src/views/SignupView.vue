@@ -3,9 +3,11 @@
     <div class="card">
       <form @submit.prevent="submitForm">
         <header class="card-header">
-          <h3>Login</h3>
+          <h3>Sign up</h3>
         </header>
         <section class="card-content">
+          <p>Please fill in the form to create an account</p>
+
           <div class="form-component" :class="{ error: fieldHasError('email') }">
             <input type="text" name="email" id="email" placeholder="" v-model="credentials.email" />
             <label for="email">Email</label>
@@ -26,12 +28,24 @@
               {{ errorMessage('password') }}
             </div>
           </div>
+          <div class="form-component" :class="{ error: fieldHasError('passwordConfirm') }">
+            <input
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              placeholder=""
+              v-model="credentials.passwordConfirm"
+            />
+            <label for="password">Confirm Password</label>
+            <div v-if="fieldHasError('passwordConfirm')" class="error-message">
+              {{ errorMessage('passwordConfirm') }}
+            </div>
+          </div>
         </section>
 
         <footer class="card-footer">
           <div class="button-group">
-            <button class="btn-primary">Login</button>
-            <a class="btn-link">Forgot password?</a>
+            <button class="btn-primary">Create account</button>
           </div>
         </footer>
       </form>
@@ -42,7 +56,7 @@
 <script setup>
 import { reactive, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
-import { required, email, minLength } from '@vuelidate/validators'
+import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators'
 
 import { useAuthStore } from '@/stores/auth'
 
@@ -50,12 +64,16 @@ const authStore = useAuthStore()
 
 const credentials = reactive({
   email: '',
-  password: ''
+  password: '',
+  passwordConfirm: ''
 })
 
 const rules = {
   email: { required, email },
-  password: { required, minLength: minLength(6) }
+  password: { required, minLength: minLength(6) },
+  passwordConfirm: {
+    sameAs: helpers.withMessage('Must match password', sameAs(computed(() => credentials.password)))
+  }
 }
 
 const fieldHasError = computed(() => {
@@ -82,7 +100,7 @@ const submitForm = async () => {
   const valid = await v$.value.$validate()
 
   if (valid) {
-    authStore.login({ email: credentials.email, password: credentials.password })
+    authStore.createAccount({ email: credentials.email, password: credentials.password })
     resetForm()
   }
 }
