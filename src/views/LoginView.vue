@@ -1,40 +1,51 @@
 <template>
   <div id="login-page">
     <div class="card">
-      <form @submit.prevent="submitForm">
-        <header class="card-header">
-          <h3>Login</h3>
-        </header>
-        <section class="card-content">
-          <div class="form-component" :class="{ error: fieldHasError('email') }">
-            <input type="text" name="email" id="email" placeholder="" v-model="credentials.email" />
-            <label for="email">Email</label>
-            <div v-if="fieldHasError('email')" class="error-message">
-              {{ errorMessage('email') }}
-            </div>
-          </div>
-          <div class="form-component" :class="{ error: fieldHasError('password') }">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder=""
-              v-model="credentials.password"
-            />
-            <label for="password">Password</label>
-            <div v-if="fieldHasError('password')" class="error-message">
-              {{ errorMessage('password') }}
-            </div>
-          </div>
-        </section>
+      <div class="card-body">
+        <form @submit.prevent="submitForm">
+          <header class="card-header">
+            <h3>Login</h3>
+          </header>
 
-        <footer class="card-footer">
-          <div class="button-group">
-            <button class="btn-primary">Login</button>
-            <a class="btn-link">Forgot password?</a>
-          </div>
-        </footer>
-      </form>
+          <section class="card-content">
+            <div class="form-component" :class="{ error: fieldHasError('email') }">
+              <input
+                type="text"
+                name="email"
+                id="email"
+                placeholder=""
+                v-model="credentials.email"
+              />
+              <label for="email">Email</label>
+              <div v-if="fieldHasError('email')" class="error-message">
+                {{ errorMessage('email') }}
+              </div>
+            </div>
+            <div class="form-component" :class="{ error: fieldHasError('password') }">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder=""
+                v-model="credentials.password"
+              />
+              <label for="password">Password</label>
+              <div v-if="fieldHasError('password')" class="error-message">
+                {{ errorMessage('password') }}
+              </div>
+            </div>
+          </section>
+
+          <footer class="card-footer">
+            <div class="button-group">
+              <button class="btn-primary">Login</button>
+              <a class="btn-link">Forgot password?</a>
+            </div>
+          </footer>
+        </form>
+      </div>
+
+      <div class="card-image"></div>
     </div>
   </div>
 </template>

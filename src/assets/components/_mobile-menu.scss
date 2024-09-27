@@ -17,6 +17,13 @@
   text-align: center;
   align-items: center;
 
+  transform: translateX(645px);
+  transition: all 1s ease;
+
+  &.active {
+    transform: translateX(0);
+  }
+
   @include xs {
     display: flex;
   }

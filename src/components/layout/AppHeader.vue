@@ -26,7 +26,7 @@
       </div>
     </nav>
 
-    <div class="mobile-menu">
+    <div class="mobile-menu" :class="{ active: showMobileMenu }">
       <ul>
         <li><a href="#" class="link-primary active">Menu Item 1</a></li>
         <li><a href="#" class="link-primary">Menu Item 2</a></li>
