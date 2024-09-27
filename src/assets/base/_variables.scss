@@ -12,13 +12,3 @@ $primary-color-dark: darken($primary-color, 10%);
 $secondary-color: hsl(0, 2%, 52%);
 $secondary-color-light: lighten($secondary-color, 10%);
 $secondary-color-dark: darken($secondary-color, 15%);
-
-// Screensizes and breakpoints
-
-$breakpoints: (
-  'xs': 640px,
-  'sm': 840px,
-  'md': 1124px,
-  'lg': 1440px,
-  'xl': 3200px
-);
