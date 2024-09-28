@@ -17,13 +17,18 @@
 
 .card-image {
   flex: 1;
-  background-image: url('assets/images/plant-3.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  // background-image: url('assets/images/plant-1.jpg');
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: cover;
 
   @include md {
     display: none;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
   }
 }
 

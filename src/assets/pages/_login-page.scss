@@ -6,3 +6,17 @@
     width: 50vw;
   }
 }
+
+#signup-page {
+  min-height: 100%;
+  @include center-form;
+
+  .card {
+    width: 50vw;
+  }
+}
+
+.server-error {
+  color: $error-color;
+  margin-top: 1rem;
+}

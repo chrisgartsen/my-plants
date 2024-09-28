@@ -45,7 +45,7 @@
         </form>
       </div>
 
-      <div class="card-image"></div>
+      <div class="card-image"><img src="../../assets/images/plant-3.jpg" alt="" /></div>
     </div>
   </div>
 </template>
@@ -98,7 +98,6 @@ const submitForm = async () => {
     console.log('Form: Starting Login')
     await authStore.login({ email: credentials.email, password: credentials.password })
     router.push({ name: 'home' })
-    console.log('Form: Finished Login')
     resetForm()
   }
 }
