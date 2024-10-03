@@ -45,7 +45,7 @@
         </form>
       </div>
 
-      <div class="card-image"><img src="../../assets/images/plant-3.jpg" alt="" /></div>
+      <div class="card-image"><img src="/assets/images/plant-3.jpg" alt="" /></div>
     </div>
   </div>
 </template>

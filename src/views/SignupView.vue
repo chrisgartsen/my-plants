@@ -2,7 +2,7 @@
   <div id="signup-page">
     <div class="card">
       <div class="card-image">
-        <img src="../../assets/images/plant-1.jpg" alt="" />
+        <img src="/assets/images/plant-1.jpg" alt="" />
       </div>
 
       <div class="card-body">
