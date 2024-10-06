@@ -1,13 +1,14 @@
 <template>
-  <div id="login-page">
+  <div id="forgotpassword-page">
     <div class="card">
       <div class="card-body">
         <form @submit.prevent="submitForm">
           <header class="card-header">
-            <h3>Login</h3>
+            <h3>Forgot password</h3>
           </header>
 
-          <section class="card-content">
+          <section class="card-content" v-if="!emailSent">
+            <p>We will send an email to reset your password.</p>
             <div class="form-component" :class="{ error: fieldHasError('email') }">
               <input
                 type="text"
@@ -21,27 +22,20 @@
                 {{ errorMessage('email') }}
               </div>
             </div>
-            <div class="form-component" :class="{ error: fieldHasError('password') }">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder=""
-                v-model="credentials.password"
-              />
-              <label for="password">Password</label>
-              <div v-if="fieldHasError('password')" class="error-message">
-                {{ errorMessage('password') }}
-              </div>
-            </div>
+          </section>
+
+          <section class="card-content" v-else>
+            <p>A password reset link has been sent to: {{ credentials.email }}.</p>
+
+            <p>Please check your inbox.</p>
           </section>
 
           <footer class="card-footer">
             <div class="button-group">
-              <button class="btn-primary">Login</button>
-              <router-link class="btn-link" :to="{ name: 'forgotPassword' }"
-                >Forgot password?</router-link
-              >
+              <button class="btn-primary" v-if="!emailSent">Send email</button>
+              <router-link class="btn-link" :to="{ name: 'login' }" v-else>
+                Back to login
+              </router-link>
             </div>
           </footer>
         </form>
@@ -53,24 +47,22 @@
 </template>
 
 <script setup>
-import { reactive, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { reactive, computed, ref } from 'vue'
 import useVuelidate from '@vuelidate/core'
-import { required, email, minLength } from '@vuelidate/validators'
+import { required, email } from '@vuelidate/validators'
 
 import { useAuthStore } from '@/stores/auth'
 
 const authStore = useAuthStore()
-const router = useRouter()
 
 const credentials = reactive({
-  email: '',
-  password: ''
+  email: ''
 })
 
+const emailSent = ref(false)
+
 const rules = {
-  email: { required, email },
-  password: { required, minLength: minLength(6) }
+  email: { required, email }
 }
 
 const fieldHasError = computed(() => {
@@ -90,17 +82,18 @@ const v$ = useVuelidate(rules, credentials)
 const resetForm = async () => {
   await v$.value.$reset()
   credentials.email = ''
-  credentials.password = ''
 }
 
 const submitForm = async () => {
   const valid = await v$.value.$validate()
 
   if (valid) {
-    console.log('Form: Starting Login')
-    await authStore.login({ email: credentials.email, password: credentials.password })
-    router.push({ name: 'home' })
-    resetForm()
+    try {
+      authStore.sendPasswordReset({ email: credentials.email })
+      emailSent.value = true
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>

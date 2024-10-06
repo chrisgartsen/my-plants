@@ -1,13 +1,6 @@
-#login-page {
-  min-height: 100%;
-  @include center-form;
-
-  .card {
-    width: 50vw;
-  }
-}
-
-#signup-page {
+#login-page,
+#signup-page,
+#forgotpassword-page {
   min-height: 100%;
   @include center-form;
 

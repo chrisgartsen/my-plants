@@ -2,7 +2,12 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 import { auth } from '@/utils/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail
+} from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', {
   state: () => {
@@ -56,6 +61,14 @@ export const useAuthStore = defineStore('auth', {
       }
 
       console.log('Creating account', credentials.email)
+    },
+
+    async sendPasswordReset(credentials) {
+      try {
+        await sendPasswordResetEmail(auth, credentials.email)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 })

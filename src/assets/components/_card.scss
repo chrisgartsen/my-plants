@@ -32,6 +32,12 @@
   }
 }
 
+.card-content {
+  p:not(:last-of-type) {
+    padding-bottom: 1rem;
+  }
+}
+
 .card-footer {
   margin-top: 2rem;
 }
