@@ -6,7 +6,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  updateProfile
 } from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', {
@@ -17,6 +18,9 @@ export const useAuthStore = defineStore('auth', {
   getters: {
     isAuthenticated(state) {
       return state.currentUser != null
+    },
+    getCurrentUser(state) {
+      return state.currentUser
     }
   },
 
@@ -61,6 +65,14 @@ export const useAuthStore = defineStore('auth', {
       }
 
       console.log('Creating account', credentials.email)
+    },
+
+    async updateAccount(formData) {
+      try {
+        await updateProfile(auth.currentUser, { displayName: formData.name })
+      } catch (error) {
+        console.log(error)
+      }
     },
 
     async sendPasswordReset(credentials) {

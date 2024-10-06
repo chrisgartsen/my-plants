@@ -1,11 +1,23 @@
 #login-page,
 #signup-page,
-#forgotpassword-page {
+#forgotpassword-page,
+#account-page {
   min-height: 100%;
   @include center-form;
+  flex-direction: column;
 
   .card {
     width: 50vw;
+  }
+
+  .card:not(:last-of-type) {
+    margin-bottom: 4rem;
+  }
+
+  .card-content {
+    .button-group {
+      margin-top: 2rem;
+    }
   }
 }
 
