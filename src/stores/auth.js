@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth', {
         await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
         this.currentUser = auth.currentUser
       } catch (e) {
-        console.log(e)
+        throw new Error(e.code)
       }
     },
     async logout() {
@@ -68,6 +68,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async updateAccount(formData) {
+      // TODO - check if the new value is different than the old value - only update when changed!!!
       try {
         await updateProfile(auth.currentUser, { displayName: formData.name })
       } catch (error) {
