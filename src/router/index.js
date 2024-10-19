@@ -7,6 +7,8 @@ import SignupView from '@/views/auth/SignupView.vue'
 import ForgotPasswordView from '@/views/auth/ForgotPasswordView.vue'
 import AccountView from '@/views/auth/AccountView.vue'
 
+import PlantsView from '@/views/plants/PlantsView.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -14,7 +16,8 @@ const router = createRouter({
     { path: '/login', name: 'login', component: LoginView },
     { path: '/signup', name: 'signup', component: SignupView },
     { path: '/forgot-password', name: 'forgotPassword', component: ForgotPasswordView },
-    { path: '/account', name: 'account', component: AccountView, meta: { requiresAuth: true } }
+    { path: '/account', name: 'account', component: AccountView, meta: { requiresAuth: true } },
+    { path: '/plants', name: 'plants', component: PlantsView, meta: { requiresAuth: true } }
   ]
 })
 

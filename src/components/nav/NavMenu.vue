@@ -13,7 +13,11 @@
       </li>
     </ul>
     <ul v-if="authStore.isAuthenticated">
-      <li><a href="Signup.html" class="link-primary" @click="navigate">Plants</a></li>
+      <li>
+        <router-link :to="{ name: 'plants' }" class="link-primary" @click="navigate">
+          Plants
+        </router-link>
+      </li>
       <li><a href="Signup.html" class="link-primary">Library</a></li>
       <li><router-link :to="{ name: 'account' }" class="link-primary">Account</router-link></li>
       <li><a href="#" class="link-primary" @click="logout">Log out</a></li>
