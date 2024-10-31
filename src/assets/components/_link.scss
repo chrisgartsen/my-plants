@@ -12,13 +12,17 @@ a {
   transition: 2s ease;
 }
 
+@mixin highlight($color) {
+  color: $color;
+  border-bottom: 2px solid $color;
+}
+
 .link-primary {
   @include link;
   color: $primary-color;
 
   &:hover {
-    color: $primary-color-light;
-    border-bottom: 2px solid $primary-color-light;
+    @include highlight($primary-color-light);
   }
 }
 
@@ -27,7 +31,10 @@ a {
   color: $secondary-color;
 
   &:hover {
-    color: $secondary-color-dark;
-    border-bottom: 2px solid $secondary-color-dark;
+    @include highlight($secondary-color-dark);
   }
+}
+
+.link-active {
+  @include highlight($primary-color-light);
 }

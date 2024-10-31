@@ -2,24 +2,46 @@
   <div>
     <ul v-if="!authStore.isAuthenticated">
       <li>
-        <router-link :to="{ name: 'login' }" class="link-primary" @click="navigate">
+        <router-link
+          :to="{ name: 'login' }"
+          class="link-primary"
+          :class="{ 'link-active': activePage('login') }"
+          @click="navigate"
+        >
           Log in
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'signup' }" class="link-primary" @click="navigate">
+        <router-link
+          :to="{ name: 'signup' }"
+          class="link-primary"
+          :class="{ 'link-active': activePage('signup') }"
+          @click="navigate"
+        >
           Sign up
         </router-link>
       </li>
     </ul>
     <ul v-if="authStore.isAuthenticated">
       <li>
-        <router-link :to="{ name: 'plants' }" class="link-primary" @click="navigate">
+        <router-link
+          :to="{ name: 'plants' }"
+          class="link-primary"
+          :class="{ 'link-active': activePage('plants') }"
+          @click="navigate"
+        >
           Plants
         </router-link>
       </li>
       <li><a href="Signup.html" class="link-primary">Library</a></li>
-      <li><router-link :to="{ name: 'account' }" class="link-primary">Account</router-link></li>
+      <li>
+        <router-link
+          :to="{ name: 'account' }"
+          class="link-primary"
+          :class="{ 'link-active': activePage('account') }"
+          >Account</router-link
+        >
+      </li>
       <li><a href="#" class="link-primary" @click="logout">Log out</a></li>
     </ul>
   </div>
@@ -27,12 +49,18 @@
 
 <script setup>
 import { useAuthStore } from '@/stores/auth'
-import { useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 const authStore = useAuthStore()
 const router = useRouter()
+const route = useRoute()
 
 const emits = defineEmits(['toggleMenu'])
+
+const activePage = computed(() => {
+  return (pageName) => pageName === route.name
+})
 
 const logout = async () => {
   await authStore.logout()

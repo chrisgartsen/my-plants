@@ -1,0 +1,40 @@
+#plants {
+  .toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .search-form {
+    .form-component {
+      position: relative;
+
+      input {
+        transform: translateY(-0.7rem);
+      }
+
+      .search-button {
+        position: absolute;
+        font-size: 1.5rem;
+        top: 1.6rem;
+        right: 0.8rem;
+        outline: none;
+        border: none;
+        background-color: inherit;
+        color: $primary-color;
+        transition: all 1s ease;
+
+        &:active {
+          transform: translateY(0.2rem);
+          color: $primary-color-light;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
