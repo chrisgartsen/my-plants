@@ -53,3 +53,20 @@
     color: $primary-color-light;
   }
 }
+
+button:disabled,
+button[disabled] {
+  border: 1px solid $secondary-color-light;
+  background-color: $white-color;
+  color: $secondary-color-light;
+  cursor: not-allowed;
+  pointer-events: all !important;
+
+  &:hover {
+    background-color: $white-color;
+  }
+
+  &:active {
+    transform: translateY(0px);
+  }
+}

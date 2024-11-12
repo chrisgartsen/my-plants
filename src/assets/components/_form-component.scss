@@ -90,3 +90,94 @@ input:-webkit-autofill:active {
     padding-top: 0.2rem;
   }
 }
+
+.radio-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  color: $primary-color;
+
+  span {
+    transform: translateY(2px);
+    min-width: 4rem;
+  }
+}
+
+.select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  color: $primary-color;
+  margin-top: 1.5rem;
+  span {
+    transform: translateY(-7px);
+    min-width: 4rem;
+  }
+}
+
+.form-component:has(input[type='radio']) {
+  input[type='radio'] {
+    appearance: none;
+    background-color: $white-color;
+    margin: 0;
+    color: $primary-color;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid $primary-color;
+    border-radius: 50%;
+    transform: translateY(4px);
+    transition: outline 0.1s ease;
+    margin-left: 0.5rem;
+  }
+
+  input[type='radio']:checked {
+    background-color: $primary-color;
+    background-clip: content-box;
+    padding: 0.14rem;
+    background-image: radial-gradient(
+      circle,
+      $primary-color 0%,
+      $primary-color 50%,
+      transparent 60% transparent 100%
+    );
+  }
+
+  .fa {
+    margin-left: 0.4rem;
+    margin-right: 0.2rem;
+  }
+}
+
+.form-component:has(select) {
+  select {
+    font-family: inherit;
+    margin-bottom: 1rem;
+    appearance: none;
+    width: 15rem;
+    outline: none;
+    font-size: 1rem;
+    border: 0.1rem solid $secondary-color-light;
+    background-color: $white-color;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: $secondary-color-dark;
+    position: relative;
+
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 0.65rem auto;
+  }
+
+  select:focus {
+    border-color: $primary-color;
+  }
+
+  select:has(option[value='']:not(:checked)) {
+    color: $primary-color;
+  }
+}
