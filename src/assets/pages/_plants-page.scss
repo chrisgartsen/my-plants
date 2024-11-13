@@ -5,15 +5,43 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
+
+    @include xs {
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
 
   .search-form {
+    @include xs {
+      width: 100%;
+    }
+
     .form-component {
       position: relative;
 
       input {
         transform: translateY(-0.7rem);
         min-width: 20rem;
+      }
+
+      .clear-button {
+        position: absolute;
+        font-size: 0.8rem;
+        top: 2rem;
+        right: 3rem;
+        outline: none;
+        border: none;
+        background-color: inherit;
+        color: $secondary-color-dark;
+        &:active {
+          transform: translateY(0.1rem);
+          color: $primary-color-dark;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       .search-button {
