@@ -1,64 +1,35 @@
 <template>
   <div id="add-plant">
-    <div class="card">
-      <div class="card-body">
-        <div class="card-header">
-          <h3>Add Plant</h3>
-          <h4>Step {{ stepNumber }}</h4>
+    <wizard-component @save="save" :steps="3" :title="title">
+      <template #content="{ stepNumber }">
+        <div v-if="stepNumber == 1">
+          <h4>Step 1 - General Plant information</h4>
+
+          - Common name - latin name of the Plant - light - watering frequency / amount - Humidity
+          preferences - Fertilization schedule
         </div>
 
-        <add-plant-step-one
-          step-number="1"
-          v-if="stepNumber == 1"
-          :formData="formData"
-          @updateFormData="updateFormData"
-        />
+        <div v-if="stepNumber == 2">Step Two</div>
 
-        <footer class="card-footer">
-          <div class="wizard-buttons">
-            <button class="btn-secondary" :disabled="stepNumber == 1" @click="previous">
-              Previous
-            </button>
-            <button class="btn-primary" @click="next" v-if="stepNumber < steps">Next</button>
-            <button class="btn-primary" @click="save" v-if="stepNumber == steps">Save</button>
-          </div>
-        </footer>
-      </div>
-    </div>
+        <div v-if="stepNumber == 3">Step Three</div>
+      </template>
+    </wizard-component>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import WizardComponent from '@/components/custom/WizardComponent.vue'
+import { reactive } from 'vue'
 
-import AddPlantStepOne from '@/components/plants/AddPlantStepOne.vue'
-
-const stepNumber = ref(1)
-const steps = ref(4)
-
-const previous = () => {
-  if (stepNumber.value > 0) {
-    stepNumber.value--
-  }
-}
-
-const next = () => {
-  if (stepNumber.value < steps.value) {
-    stepNumber.value++
-  }
-}
-
-const save = () => {
-  console.log('Saving form')
-}
+const title = 'Add a plant to the catalogue'
 
 const formData = reactive({
-  name: 'kjkj',
-  light: 'shade',
+  name: '',
+  sunlight: '',
   water: ''
 })
 
-const updateFormData = (newVal) => {
-  console.log('Updating Formdata - Parent', newVal)
+const save = () => {
+  console.log('Saving form')
 }
 </script>
