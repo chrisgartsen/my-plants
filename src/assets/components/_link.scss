@@ -35,6 +35,6 @@ a {
   }
 }
 
-.link-active {
+.router-link-active {
   @include highlight($primary-color-light);
 }
