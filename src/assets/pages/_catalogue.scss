@@ -1,8 +1,26 @@
 #catalogue {
   @include center-form;
+  display: flex;
+  flex-direction: column;
+
+  .action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    width: 70%;
+  }
+
+  h3 {
+    align-self: flex-start;
+  }
 
   table {
-    width: 70%;
+    width: 100%;
     border-collapse: collapse;
   }
 
@@ -29,5 +47,13 @@
 
   th {
     border-bottom: 1px solid $primary-color;
+  }
+
+  tr:hover {
+    cursor: pointer;
+    td {
+      background-color: $white-ivory;
+      color: $primary-color;
+    }
   }
 }

@@ -19,7 +19,7 @@
         </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'catalogue' }" class="link-primary" @click="navigate">
+        <router-link to="/catalogue" class="link-primary" @click="navigate">
           Catalogue
         </router-link>
       </li>

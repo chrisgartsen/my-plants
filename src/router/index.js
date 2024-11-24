@@ -10,7 +10,10 @@ import AccountView from '@/views/auth/AccountView.vue'
 import PlantsView from '@/views/plants/PlantsView.vue'
 import AddPlantView from '@/views/plants/AddPlantView.vue'
 
-import CatalogIndex from '@/views/catalogue.vue/CatalogIndex.vue'
+import CatalogueView from '@/views/CatalogueView.vue'
+import CatalogueIndex from '@/components/catalogue/CataloguePlants.vue'
+import CataloguePlantDetails from '@/components/catalogue/CataloguePlantDetails.vue'
+import CataloguePlantsAdd from '@/components/catalogue/CataloguePlantsAdd.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,8 +33,13 @@ const router = createRouter({
     {
       path: '/catalogue',
       name: 'catalogue',
-      component: CatalogIndex,
-      meta: { requiresAuth: true }
+      component: CatalogueView,
+      meta: { requiresAuth: true },
+      children: [
+        { path: 'add', name: 'catalogue-add', component: CataloguePlantsAdd },
+        { path: ':id', name: 'details', component: CataloguePlantDetails, props: true },
+        { path: '', name: 'index', component: CatalogueIndex }
+      ]
     },
 
     { path: '/plants', name: 'plants', component: PlantsView, meta: { requiresAuth: true } }
