@@ -18,7 +18,12 @@
           Plants
         </router-link>
       </li>
-      <li><a href="Signup.html" class="link-primary">Library</a></li>
+      <li>
+        <router-link :to="{ name: 'catalogue' }" class="link-primary" @click="navigate">
+          Catalogue
+        </router-link>
+      </li>
+
       <li>
         <router-link :to="{ name: 'account' }" class="link-primary">Account</router-link>
       </li>

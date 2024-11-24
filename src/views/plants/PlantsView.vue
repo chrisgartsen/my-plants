@@ -21,12 +21,12 @@
 </template>
 
 <script setup>
-import { usePlantStore } from '@/stores/plant'
+// import { usePlantStore } from '@/stores/plant'
 import { computed, onMounted, reactive, ref } from 'vue'
 
 import PlantCard from '@/components/plants/PlantCard.vue'
 
-const plantStore = usePlantStore()
+// const plantStore = usePlantStore()
 const state = reactive({ plants: [] })
 
 const search = ref('')
@@ -46,6 +46,6 @@ const submitSearch = () => {
 }
 
 onMounted(() => {
-  state.plants = plantStore.getAllPlants
+  // state.plants = plantStore.getAllPlants
 })
 </script>

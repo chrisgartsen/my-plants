@@ -10,6 +10,8 @@ import AccountView from '@/views/auth/AccountView.vue'
 import PlantsView from '@/views/plants/PlantsView.vue'
 import AddPlantView from '@/views/plants/AddPlantView.vue'
 
+import CatalogIndex from '@/views/catalogue.vue/CatalogIndex.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -24,6 +26,14 @@ const router = createRouter({
       component: AddPlantView,
       meta: { requiresAuth: true }
     },
+
+    {
+      path: '/catalogue',
+      name: 'catalogue',
+      component: CatalogIndex,
+      meta: { requiresAuth: true }
+    },
+
     { path: '/plants', name: 'plants', component: PlantsView, meta: { requiresAuth: true } }
   ]
 })

@@ -1,0 +1,33 @@
+#catalogue {
+  @include center-form;
+
+  table {
+    width: 70%;
+    border-collapse: collapse;
+  }
+
+  th {
+    color: $primary-color;
+  }
+
+  td {
+    color: $secondary-color-dark;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 1rem 1.5rem;
+
+    &.icon {
+      max-width: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  th {
+    border-bottom: 1px solid $primary-color;
+  }
+}
